@@ -1,0 +1,39 @@
+chroms = [str(x) for x in list(range(1,23))]
+chroms.append("X")
+chroms.append("Y")
+
+mongoDatabase = "hammerharmlessmutagenremoval_mongo_1" 
+
+rule dlAll:
+    input:
+        expand("dataBase/mongo{snp}.filled", snp= chroms)
+
+rule Inputvcf:
+    output:
+        "dataBase/mongo{snp}.filled"
+    shell:
+        "(sudo docker exec -it {mongoDatabase} /home/fill.sh {wildcards.snp}) && touch {output}"
+
+rule compareBGZ:
+    input:
+        "compare/bgz/{name}.{number}.vcf.bgz"
+    output:
+        "compare/vcf/{name}.{number}.vcf"
+    shell:
+        "gunzip -c {input} > {output}"
+
+rule compareVCF:
+    input:
+        "compare/vcf/{name}.{number}.vcf"
+    output:
+        "compare/jsonInput/{name}.{number}.json"
+    shell:
+        "./makeJSON.sh {input} > {output}"
+
+rule compareJSON:
+    input:
+        "compare/jsonInput/{name}.{number}.json"
+    output:
+        "compare/jsonOutput/{name}.{number}.json"
+    shell:
+        "awk '{{if(length($0) > 1 ) system(\"python jsonToMongo.py \"$0)}}' {input} | awk -F \"\\t\" '{{system(\"./compare.sh \"$1\" \"$2\" \"$3\" \"$4)\" \"{mongoDatabase}}}'> {output}"
