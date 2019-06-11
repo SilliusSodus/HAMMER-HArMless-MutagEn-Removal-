@@ -1,0 +1,9 @@
+mongo:
+  build: Mongo
+
+mongoexpress:
+  image: mongo-express
+  links: 
+    - mongo
+  ports:
+    - "8081:8081"
