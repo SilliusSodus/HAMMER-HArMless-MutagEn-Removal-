@@ -1,0 +1,43 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	compareBGZ
+	1	compareVCF
+	2
+
+[Tue Jun 11 23:38:31 2019]
+rule compareBGZ:
+    input: compare/bgz/gnomad.exomes.r2.1.1.sites.Y.vcf.bgz
+    output: compare/vcf/gnomad.exomes.r2.1.1.sites.Y.vcf
+    jobid: 1
+    wildcards: name=gnomad.exomes.r2.1.1.sites, number=Y
+
+[Tue Jun 11 23:38:32 2019]
+Finished job 1.
+1 of 2 steps (50%) done
+
+[Tue Jun 11 23:38:32 2019]
+rule compareVCF:
+    input: compare/vcf/gnomad.exomes.r2.1.1.sites.Y.vcf
+    output: compare/jsonInput/gnomad.exomes.r2.1.1.sites.Y.json
+    jobid: 0
+    wildcards: name=gnomad.exomes.r2.1.1.sites, number=Y
+
+[Tue Jun 11 23:38:32 2019]
+Error in rule compareVCF:
+    jobid: 0
+    output: compare/jsonInput/gnomad.exomes.r2.1.1.sites.Y.json
+
+RuleException:
+CalledProcessError in line 31 of /home/sebastiaan/Documents/blok 11/HAMMER/really/HAMMER-HArMless-MutagEn-Removal-/SnakeMake/Snakefile:
+Command ' set -euo pipefail;  ./makeJSON.sh compare/vcf/gnomad.exomes.r2.1.1.sites.Y.vcf > compare/jsonInput/gnomad.exomes.r2.1.1.sites.Y.json ' returned non-zero exit status 126.
+  File "/home/sebastiaan/Documents/blok 11/HAMMER/really/HAMMER-HArMless-MutagEn-Removal-/SnakeMake/Snakefile", line 31, in __rule_compareVCF
+  File "/home/sebastiaan/anaconda3/envs/HAMMER/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Removing output files of failed job compareVCF since they might be corrupted:
+compare/jsonInput/gnomad.exomes.r2.1.1.sites.Y.json
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/sebastiaan/Documents/blok 11/HAMMER/really/HAMMER-HArMless-MutagEn-Removal-/SnakeMake/.snakemake/log/2019-06-11T233831.516851.snakemake.log

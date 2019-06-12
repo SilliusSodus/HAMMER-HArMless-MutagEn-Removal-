@@ -2,7 +2,7 @@ chroms = [str(x) for x in list(range(1,23))]
 chroms.append("X")
 chroms.append("Y")
 
-mongoDatabase = "hammerharmlessmutagenremoval_mongo_1" 
+mongoDatabase = "hammerharmlessmutagenremoval_mongo_1"
 
 rule dlAll:
     input:
@@ -12,7 +12,7 @@ rule Inputvcf:
     output:
         "dataBase/mongo{snp}.filled"
     shell:
-        "(sudo docker exec -it {mongoDatabase} /home/fill.sh {wildcards.snp}) && touch {output}"
+        "(sudo docker exec -it hammerharmlessmutagenremoval_mongo_1 /home/fill.sh {wildcards.snp}) && touch {output}"
 
 rule compareBGZ:
     input:
@@ -28,7 +28,7 @@ rule compareVCF:
     output:
         "compare/jsonInput/{name}.{number}.json"
     shell:
-        "./makeJSON.sh {input} > {output}"
+        "chmod 777 makeJSON.sh;./makeJSON.sh {input} > {output}"
 
 rule compareJSON:
     input:
@@ -36,4 +36,4 @@ rule compareJSON:
     output:
         "compare/jsonOutput/{name}.{number}.json"
     shell:
-        "awk '{{if(length($0) > 1 ) system(\"python jsonToMongo.py \"$0)}}' {input} | awk -F \"\\t\" '{{system(\"./compare.sh \"$1\" \"$2\" \"$3\" \"$4)\" \"{mongoDatabase}}}'> {output}"
+        "chmod 777 jsonMongo.py compare.sh; awk '{{if(length($0) > 1 ) system(\"python jsonToMongo.py \"$0)}}' {input} | awk -F \"\\t\" '{{system(\"./compare.sh \"$1\" \"$2\" \"$3\" \"$4\" hammerharmlessmutagenremoval_mongo_1\")}}'> {output}"

@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	Inputvcf
+	1
+
+[Tue Jun 11 23:31:38 2019]
+rule Inputvcf:
+    output: dataBase/mongoY.filled
+    jobid: 0
+    wildcards: snp=Y
+
+[Tue Jun 11 23:31:51 2019]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/sebastiaan/Documents/blok 11/HAMMER/really/HAMMER-HArMless-MutagEn-Removal-/SnakeMake/.snakemake/log/2019-06-11T233137.977559.snakemake.log

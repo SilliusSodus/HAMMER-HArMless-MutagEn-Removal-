@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	compareVCF
+	1
+
+[Tue Jun 11 23:42:24 2019]
+rule compareVCF:
+    input: compare/vcf/gnomad.exomes.r2.1.1.sites.Y.vcf
+    output: compare/jsonInput/gnomad.exomes.r2.1.1.sites.Y.json
+    jobid: 0
+    wildcards: name=gnomad.exomes.r2.1.1.sites, number=Y
+
+[Tue Jun 11 23:42:26 2019]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/sebastiaan/Documents/blok 11/HAMMER/really/HAMMER-HArMless-MutagEn-Removal-/SnakeMake/.snakemake/log/2019-06-11T234224.334576.snakemake.log
