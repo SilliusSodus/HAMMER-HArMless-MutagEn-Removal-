@@ -1,0 +1,29 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	compareJSON
+	1
+
+[Wed Jun 12 10:03:09 2019]
+rule compareJSON:
+    input: compare/jsonInput/dinges.3.json
+    output: compare/jsonOutput/dinges.3.json
+    jobid: 0
+    wildcards: name=dinges, number=3
+
+[Wed Jun 12 10:03:09 2019]
+Error in rule compareJSON:
+    jobid: 0
+    output: compare/jsonOutput/dinges.3.json
+
+RuleException:
+CalledProcessError in line 39 of /home/sebastiaan/Documents/blok 11/HAMMER/really/HAMMER-HArMless-MutagEn-Removal-/SnakeMake/Snakefile:
+Command ' set -euo pipefail;  chmod 777 jsonMongo.py compare.sh; awk '{if(length($0) > 1 ) system("python jsonToMongo.py "$0)}' compare/jsonInput/dinges.3.json | awk -F "\t" '{system("./compare.sh "$1" "$2" "$3" "$4" hammerharmlessmutagenremoval_mongo_1")}'> compare/jsonOutput/dinges.3.json ' returned non-zero exit status 1.
+  File "/home/sebastiaan/Documents/blok 11/HAMMER/really/HAMMER-HArMless-MutagEn-Removal-/SnakeMake/Snakefile", line 39, in __rule_compareJSON
+  File "/home/sebastiaan/anaconda3/envs/HAMMER/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/sebastiaan/Documents/blok 11/HAMMER/really/HAMMER-HArMless-MutagEn-Removal-/SnakeMake/.snakemake/log/2019-06-12T100309.641174.snakemake.log

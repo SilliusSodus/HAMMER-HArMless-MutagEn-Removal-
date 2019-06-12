@@ -36,4 +36,4 @@ rule compareJSON:
     output:
         "compare/jsonOutput/{name}.{number}.json"
     shell:
-        "chmod 777 jsonMongo.py compare.sh; awk '{{if(length($0) > 1 ) system(\"python jsonToMongo.py \"$0)}}' {input} | awk -F \"\\t\" '{{system(\"./compare.sh \"$1\" \"$2\" \"$3\" \"$4\" hammerharmlessmutagenremoval_mongo_1\")}}'> {output}"
+        "chmod 777 jsonToMongo.py compare.sh; awk '{{if(length($0) > 1 ) system(\"python jsonToMongo.py \"$0)}}' {input} | awk -F \"\\t\" '{{system(\"./compare.sh \"$1\" \"$2\" \"$3\" \"$4\" hammerharmlessmutagenremoval_mongo_1\")}}'> {output}"
