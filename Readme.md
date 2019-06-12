@@ -16,8 +16,8 @@ Type into console:</br>
 ## Usage
 Replace the curly brackets and the info within by the specified info inside.</br>
 So for instance:<br>
-` snakemake "dataBase/mongo{Chromosome here}.filled" `
-` snakemake "dataBase/mongoY.filled" `
+` snakemake "compare/jsonOutput/{name of inputfile}.{serialnumber}.json" `
+` snakemake "compare/jsonOutput/thingy.2.json" `
 
 First turn on the docker-compose by navigating to the repo directory and use the command:</br>
 ` sudo docker-compose up ` </br>
@@ -35,6 +35,7 @@ To fill the database with a specific chromosome do:</br>
 
 To compare a bgz/vcf/json file with the database and remove all of the found matches in the database:</br>
 First place the file you wish to compare with the database in compare/{bgz/vcf/jsonInput}</br>
+The input file name must match the name of the file mentioned below:<br>
 ` snakemake "compare/jsonOutput/{name of inputfile}.{serialnumber}.json" `
 
 To reach direct access to the database:</br>
